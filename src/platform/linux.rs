@@ -1,5 +1,3 @@
-extern crate libc;
-
 use std::os::unix::ffi::OsStrExt;
 use std::path::Path;
 use std::{io, ffi};

@@ -1,17 +1,15 @@
-extern crate winapi;
-
 use std::ffi::{OsStr, OsString};
 use std::os::windows::ffi::{OsStringExt, OsStrExt};
 use std::path::Path;
 use std::{io, fs, ptr};
 
-use self::winapi::shared::minwindef::{MAX_PATH, FALSE};
-use self::winapi::shared::ntdef::HANDLE;
-use self::winapi::um::errhandlingapi::GetLastError;
-use self::winapi::um::fileapi::GetTempFileNameW;
-use self::winapi::um::handleapi::INVALID_HANDLE_VALUE;
-use self::winapi::um::ktmw32::{CreateTransaction, RollbackTransaction, CommitTransaction};
-use self::winapi::um::winbase::{MoveFileTransactedW, DeleteFileTransactedW};
+use winapi::shared::minwindef::{MAX_PATH, FALSE};
+use winapi::shared::ntdef::HANDLE;
+use winapi::um::errhandlingapi::GetLastError;
+use winapi::um::fileapi::GetTempFileNameW;
+use winapi::um::handleapi::INVALID_HANDLE_VALUE;
+use winapi::um::ktmw32::{CreateTransaction, RollbackTransaction, CommitTransaction};
+use winapi::um::winbase::{MoveFileTransactedW, DeleteFileTransactedW};
 
 /// Function used to create a temporary file in given directory
 fn tmp_name_in_dir(dir: &Path) -> io::Result<OsString> {
