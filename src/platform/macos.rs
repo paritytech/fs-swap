@@ -1,12 +1,9 @@
-extern crate libc;
-extern crate libloading;
-
 use std::os::unix::ffi::OsStrExt;
 use std::path::Path;
 use std::{io, ffi};
-use self::libloading::os::unix::{Library, Symbol};
+use libloading::os::unix::{Library, Symbol};
 
-lazy_static! {
+lazy_static::lazy_static! {
 	/// `renamex_np` is available only on macos >= 10.12
 	static ref RENAMEX_NP: Option<Symbol<unsafe extern fn (oldpath: *const libc::c_char, newpath: *const libc::c_char, flags: libc::c_uint) -> libc::c_int>> = unsafe {
 		let lib = Library::this();
