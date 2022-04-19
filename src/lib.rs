@@ -63,11 +63,11 @@ pub fn swap_nonatomic<A, B>(a: A, b: B) -> io::Result<()> where A: AsRef<Path>, 
 
 #[cfg(test)]
 mod tests {
-	extern crate tempdir;
+	extern crate tempfile;
 	use std::fs;
 	use std::path::Path;
 	use std::io::{Write, Read};
-	use self::tempdir::TempDir;
+	use self::tempfile::TempDir;
 	use super::{swap, swap_nonatomic};
 
 	fn write_to_file<P: AsRef<Path>>(file: P, text: &str) {
@@ -92,7 +92,7 @@ mod tests {
 
 	#[test]
 	fn test_swap_files() {
-		let dir = TempDir::new("").unwrap();
+		let dir = TempDir::new().unwrap();
 		let path_a = dir.path().join("file_a");
 		let path_b = dir.path().join("file_b");
 		write_to_file(&path_a, "foo");
@@ -108,8 +108,8 @@ mod tests {
 	#[cfg(not(target_os = "macos"))]
 	#[test]
 	fn test_swap_dirs() {
-		let dir_a = TempDir::new("a").unwrap();
-		let dir_b = TempDir::new("b").unwrap();
+		let dir_a = TempDir::new().unwrap();
+		let dir_b = TempDir::new().unwrap();
 		let path_a = dir_a.path().join("file");
 		let path_b = dir_b.path().join("file");
 		write_to_file(&path_a, "foo");
@@ -123,7 +123,7 @@ mod tests {
 
 	#[test]
 	fn test_swap_nonatomic_files() {
-		let dir = TempDir::new("").unwrap();
+		let dir = TempDir::new().unwrap();
 		let path_a = dir.path().join("file_a");
 		let path_b = dir.path().join("file_b");
 		write_to_file(&path_a, "foo");
@@ -138,8 +138,8 @@ mod tests {
 	// atomic swaps of dirs are not supported on travis machines
 	#[test]
 	fn test_swap_nonatomic_dirs() {
-		let dir_a = TempDir::new("a").unwrap();
-		let dir_b = TempDir::new("b").unwrap();
+		let dir_a = TempDir::new().unwrap();
+		let dir_b = TempDir::new().unwrap();
 		let path_a = dir_a.path().join("file");
 		let path_b = dir_b.path().join("file");
 		write_to_file(&path_a, "foo");

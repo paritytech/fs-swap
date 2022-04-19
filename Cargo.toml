@@ -17,7 +17,7 @@ lazy_static = "1.0"
 winapi = { version = "0.3.4", features = ["ktmw32", "handleapi", "fileapi", "errhandlingapi", "winbase"] }
 
 [dev-dependencies]
-tempdir = "0.3"
+tempfile = "3"
 
 [badges]
 travis-ci = { repository = "debris/fs-swap", branch = "master"}
