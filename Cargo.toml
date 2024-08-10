@@ -6,6 +6,9 @@ description = "Cross-platform implementation of path swap"
 license = "MIT"
 homepage = "https://github.com/paritytech/fs-swap"
 
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+
 [target.'cfg(unix)'.dependencies]
 libc = "0.2.90"
 
